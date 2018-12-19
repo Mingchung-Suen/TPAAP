@@ -92,7 +92,7 @@ export default {
     my: 'My',
     num: 'Project No.',
     waiting: 'Wating',
-    acting: 'Acting',
+    acting: 'Developing',
     checking: 'Checking',
     accepted: 'Accepted',
     detail: 'Detail'

@@ -6,17 +6,17 @@
       class="list-item"
     >
       <div class="header">
-        <div class="time">{{ item.time | timeFormat }}</div>
-        <div>{{ $t('project.num') }} {{ item.id }}</div>
+        <div class="time">{{ 1545194772 | timeFormat }}</div>
+        <div>{{ $t('project.num') }} tzp-2018-{{ item.id }}</div>
       </div>
       <div class="detail">
         <div class="name">{{ item.name }}</div>
         <div class="manager">
           <div class="manager-name">
             <div class="manager-icon"/>
-            <div class="manager-text">{{ item.manager }}</div>
+            <div class="manager-text">{{ item.overall_charge.name }}</div>
           </div>
-          <div class="manager-department">{{ item.department }}</div>
+          <div class="manager-department">{{ item.overall_charge.dep }}</div>
         </div>
         <div class="manager party_a">
           <div class="party_a-container">

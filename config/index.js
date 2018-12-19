@@ -13,7 +13,7 @@ module.exports = {
       '/api': {
         // 测试环境
         // target: 'http://sign.tiaozhan.be.com', // 接口域名
-        target: 'http://tpaap.be.tiaozhan.com',
+        target: 'http://tpaap.test.tiaozhan.com',
         changeOrigin: true, // 是否跨域
         pathRewrite: {
           '^/api': '/api/v1.0' // 需要rewrite重写的,

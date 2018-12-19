@@ -10,7 +10,7 @@
           </li>
           <li>
             <div>
-              <a href="javascript:;">项目列表</a>
+              <a href="javascript:;" @click="handleList">项目列表</a>
             </div>
           </li>
         </ul>
@@ -52,6 +52,9 @@ export default {
       this.$store.dispatch('LogOut').then(() => {
         location.reload()
       })
+    },
+    handleList() {
+      this.$router.push({ path: '/project' })
     }
   }
 }

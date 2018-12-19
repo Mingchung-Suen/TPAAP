@@ -56,6 +56,18 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+    },
+    getUserInfoSync: (state) => {
+      getUserInfo().then(response => {
+        // console.log(response.data)
+        const res = response.data.data
+        if (res.isLogin) {
+          state.roles = res.info
+          state.name = res.info.name
+          state.isLogin = res.isLogin
+          return
+        }
+      })
     }
   },
 
@@ -147,7 +159,6 @@ const user = {
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout().then(response => {
-          commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
           commit('SET_NAME', '')
           commit('SET_ISLOGIN', false)
@@ -163,7 +174,6 @@ const user = {
     // 前端 登出
     FedLogOut({ commit }) {
       return new Promise(resolve => {
-        commit('SET_TOKEN', '')
         removeToken()
         resolve()
       })

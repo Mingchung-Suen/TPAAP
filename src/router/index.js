@@ -91,7 +91,7 @@ export const constantRouterMap = [
     hidden: true
   },
   {
-    path: '/project/list',
+    path: '/project',
     component: () => import('@/views/project/index'),
     hidden: true,
     name: 'List',
@@ -101,10 +101,10 @@ export const constantRouterMap = [
   },
   {
     path: '',
-    redirect: '/project/list',
+    redirect: '/project',
     children: [
       {
-        path: '/project/list',
+        path: '/project',
         component: () => import('@/views/project/index'),
         hidden: true,
         name: 'List',

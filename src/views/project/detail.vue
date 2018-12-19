@@ -47,6 +47,7 @@
             </div>
           </div>
         </div>
+        <DetailInfo />
         <ProjectActions />
       </div>
     </div>
@@ -58,12 +59,14 @@ import Header from '@/components/Header'
 import Banner from '@/components/Banner'
 import { parseTime } from '@/utils/index'
 import ProjectActions from '@/components/project/actions'
+import DetailInfo from '@/components/project/info'
 export default {
   name: 'ProjectDetail',
   components: {
     Header,
     Banner,
-    ProjectActions
+    ProjectActions,
+    DetailInfo
   },
   filters: {
     statusTextFilter(status) {
@@ -83,8 +86,8 @@ export default {
     }
   },
   created() {
-    this.project.status = this.$route.params.status
-    this.project.id = this.$route.params.id
+    // this.project.status = this.$route.params.status
+    // this.project.id = this.$route.params.id
     console.log(this.project)
   },
   methods: {

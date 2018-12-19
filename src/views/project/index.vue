@@ -53,7 +53,7 @@ export default {
         this.listLoading = true
         const res = await fetchProjectList()
         this.listLoading = false
-        this.list = res.data
+        this.list = res.data.data.data
         console.log(res)
       } catch (error) {
         console.log(error)
