@@ -8,15 +8,20 @@
       <div class="header">
         <div class="time">{{ 1545194772 | timeFormat }}</div>
         <div>{{ $t('project.num') }} tzp-2018-{{ item.id }}</div>
+        <div class="titles">
+          <div class="manager-title">{{ $t('project.title_manager') }}</div>
+          <div class="party_a-title">{{ $t('project.title_client') }}</div>
+          <div class="status-title">{{ $t('project.title_status') }}</div>
+        </div>
       </div>
       <div class="detail">
         <div class="name">{{ item.name }}</div>
         <div class="manager">
           <div class="manager-name">
             <div class="manager-icon"/>
-            <div class="manager-text">{{ item.overall_charge.name }}</div>
+            <div class="manager-text"><a target="_blank" :href="'https://git.tiaozhan.com/' + item.overall_charge.netid">{{ language==='zh' ? item.overall_charge.name : item.overall_charge.netid }}</a></div>
           </div>
-          <div class="manager-department">{{ item.overall_charge.dep }}</div>
+          <div class="manager-department">{{ deptFilter(item.overall_charge.dep) }}</div>
         </div>
         <div class="manager party_a">
           <div class="party_a-container">
@@ -25,8 +30,8 @@
           </div>
         </div>
         <div class="status">
-          <div :class="item.status | iconFilter"/>
-          <div class="status-text"> {{ langChange(item.status) }}</div>
+          <div :class="2 | iconFilter"/>
+          <div class="status-text"> {{ langChange(2) }}</div>
         </div>
         <div class="detail-text">
           <a href="javascript:;" @click="handleDetail(index)">{{ $t('project.detail') }}</a>
@@ -54,21 +59,16 @@ export default {
       }
       return map[status]
     }
-    // statusTextFilter(status) {
-    //   console.log(this)
-    //   const map = {
-    //     '0': this.langChange('project.waiting'),
-    //     '1': this.langChange('project.acting'),
-    //     '2': this.langChange('project.checking'),
-    //     '3': this.langChange('project.accepted')
-    //   }
-    //   return map[status]
-    // }
   },
   props: {
     listData: {
       type: Array,
       required: true
+    }
+  },
+  computed: {
+    language() {
+      return this.$store.getters.language
     }
   },
   data() {
@@ -86,6 +86,15 @@ export default {
       }
       return map[status]
       // return this.$t(str)
+    },
+    deptFilter(dept) {
+      const map = {
+        '0': this.$t('department.product'),
+        '1': this.$t('department.tech'),
+        '2': this.$t('department.visual'),
+        '3': this.$t('department.video')
+      }
+      return map[dept]
     },
     handleDetail(id) {
       // console.log(this.listData)
@@ -156,14 +165,33 @@ export default {
       font-family: 'SF Pro Text';
       font-size: 12px;
       display: flex;
-      .time{
-        margin-right: 30px;
+      justify-content: space-between;
+      .titles{
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        div{
+          text-align: center;
+        }
+        .manager-title{
+          width: 100px;
+          margin-left: 110px;
+        }
+        .status-title{
+          width: 100px;
+          margin-right: 95px;
+        }
+        .party_a-title{
+          width: 100px;
+          margin-left: 25px;
+        }
       }
     }
     .detail{
       width: 100%;
       height: 100px;
       display: flex;
+      min-width: 800px;
       .name{
         padding: 10px;
         width: 730px;
@@ -174,6 +202,7 @@ export default {
       .manager{
         padding: 20px;
         border-right: 1px solid #d7d7d7;
+        position: relative;
         .manager-name{
           display: flex;
           width: 100px;
@@ -193,6 +222,10 @@ export default {
             line-height: 20px;
             font-size: 14px;
             margin-left: 5px;
+            a:hover{
+              color: rgb(66, 112, 219);
+              text-decoration: underline
+            }
           }
         }
         .manager-department{
@@ -205,6 +238,7 @@ export default {
           // display: flex;
           width: 150px;
           text-align: center;
+          position: relative;
           .party_a-icon{
             margin: 0 auto;
             width: 30px;
@@ -229,6 +263,7 @@ export default {
         height: 100%;
         padding: 20px;
         border-right: 1px solid #d7d7d7;
+        position: relative;
         .status-icon{
           margin: 0 auto;
         }

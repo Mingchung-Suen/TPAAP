@@ -1,9 +1,9 @@
 <template>
   <div class="banner">
-      <div class="container">
-        <div class="logo" />
-        <div class="title">{{ $t('login.title') }}</div>
-      </div>
+    <div class="container">
+       <div class="logo" />
+       <div class="title">{{ $t('login.title') }}</div>
+    </div>
     </div>
 </template>
 

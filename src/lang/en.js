@@ -95,7 +95,16 @@ export default {
     acting: 'Developing',
     checking: 'Checking',
     accepted: 'Accepted',
-    detail: 'Detail'
+    detail: 'Detail',
+    title_manager: 'Chief Manager',
+    title_status: 'Status',
+    title_client: 'Client'
+  },
+  department: {
+    product: 'Producting Department',
+    tech: 'Technical Department',
+    visual: 'Visual Department',
+    video: 'Video Department'
   },
   documentation: {
     documentation: 'Documentation',

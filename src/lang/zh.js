@@ -95,7 +95,16 @@ export default {
     acting: '开发中',
     checking: '验收中',
     accepted: '已完成',
-    detail: '项目详情'
+    detail: '项目详情',
+    title_manager: '总负责人',
+    title_status: '状态信息',
+    title_client: '甲方'
+  },
+  department: {
+    product: '产品部',
+    tech: '技术部',
+    visual: '美工部',
+    video: '视频部'
   },
   documentation: {
     documentation: '文档',

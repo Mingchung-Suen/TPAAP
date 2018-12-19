@@ -8,8 +8,8 @@
           <div class="brief">
             <div class="id">{{ project.id }}</div>
             <div class="name">{{ project.name }}</div>
-            <div :class="iconFilter(project.status, -1)"/>
-            <div class="status-text">
+            <div :class="iconFilter(project.status, project.status)"/>
+            <div :style="textFilter(project.status, project.status)" class="status-text">
               {{ statuLangFilter(project.status) }}
             </div>
           </div>
@@ -19,7 +19,7 @@
               <div :style="textFilter(0, project.status)" class="status-text">
                 {{ statuLangFilter(0) }}
               </div>
-              <div class="time">{{ 1544470224 | timeFormatter }}</div>
+              <div class="time" v-if="project.status >= 0">{{ 1544470224 | timeFormatter }}</div>
             </div>
             <div :style="dashFilter(0, project.status)" class="dash"/>
             <div class="statusBox">
@@ -27,7 +27,7 @@
               <div :style="textFilter(1, project.status)" class="status-text">
                 {{ statuLangFilter(1) }}
               </div>
-              <div class="time">{{ 1544470224 | timeFormatter }}</div>
+              <div class="time" v-if="project.status >= 1">{{ 1544471225 | timeFormatter }}</div>
             </div>
             <div :style="dashFilter(1, project.status)" class="dash" />
             <div class="statusBox">
@@ -35,7 +35,7 @@
               <div :style="textFilter(2, project.status)" class="status-text">
                 {{ statuLangFilter(2) }}
               </div>
-              <div class="time">{{ 1544470224 | timeFormatter }}</div>
+              <div class="time" v-if="project.status >= 2">{{ 1544472226 | timeFormatter }}</div>
             </div>
             <div :style="dashFilter(2, project.status)" class="dash" />
             <div class="statusBox">
@@ -43,7 +43,7 @@
               <div :style="textFilter(3, project.status)" class="status-text">
                 {{ statuLangFilter(3) }}
               </div>
-              <div class="time">{{ null | timeFormatter }}</div>
+              <div class="time" v-if="project.status >= 3">{{ 1544473227 | timeFormatter }}</div>
             </div>
           </div>
         </div>
@@ -89,8 +89,18 @@ export default {
     // this.project.status = this.$route.params.status
     // this.project.id = this.$route.params.id
     console.log(this.project)
+    clearInterval()
+    this.changeStatus()
   },
   methods: {
+    changeStatus() {
+      setInterval(() => {
+        this.project.status ++
+        if (this.project.status === 4) {
+          this.project.status = 0
+        }
+      },2000)
+    },
     statuLangFilter(status) {
       const map = {
         '0': this.$t('project.waiting'),
@@ -113,7 +123,7 @@ export default {
       return s < status ? 'border-top: 3px solid #1296db;' : ''
     },
     textFilter(s, status) {
-      return s <= status ? 'color: #1296db' : ''
+      return s <= status ?  s === 3 ? 'color: #04d235': 'color: #1296db' : ''
     }
   }
 }
@@ -130,7 +140,7 @@ export default {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url('../../../static/image/accepted-passed.png')
+  background-image: url('../../../static/image/accepted-passed-green.png')
 }
 .status-acting{
   background-size: 100%;
@@ -179,6 +189,7 @@ export default {
   background-color: #f5f5f5;
   .container{
     width: 75%;
+    min-width: 1000px;
     margin: 0 auto;
     .status{
       width: 100%;

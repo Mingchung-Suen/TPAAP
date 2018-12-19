@@ -1,15 +1,38 @@
 <template>
-    <div class="info-container">fakjshfka</div>
+  <div>
+    <div class="info-container">
+      <div>
+      {{ time | timeFormat }}
+      </div>
+      <div>aisdjasdijlas</div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { parseTime } from '@/utils/index'
 export default {
 	name: 'DetailInfo',
 	data() {
 		return {
-
+      time: 154447322700
 		}
-	}
+  },
+  filters:{
+    timeFormat(time) {
+      return parseTime(time * 10, '{y}-{m}-{d} {h}:{i}:{s}:' + time % 100)
+    },
+  },
+  created() {
+    // this.changeTime()
+  },
+  methods:{
+    changeTime() {
+      setInterval(() => {
+        this.time ++
+      },10)
+    }
+  }
 }
 </script>
 

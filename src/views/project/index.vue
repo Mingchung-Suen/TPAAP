@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail-page">
     <Header />
     <Banner />
     <div class="content-main">
@@ -64,6 +64,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.detail-page{
+  min-width: 1200px;
+}
 .content-main{
   width: 100%;
   height: 100%;
